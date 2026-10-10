@@ -1,0 +1,58 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+target
+
+# Dados de runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnósticos
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Cobertura de testes
+lib-cov
+coverage
+*.lcov
+.nyc_output
+
+# Caches e ferramentas de build
+.npm
+.eslintcache
+.stylelintcache
+.cache
+.parcel-cache
+.next
+.nuxt
+.output
+.vite-inspect
+*.tsbuildinfo
+
+# Dependências
+node_modules
+jspm_packages
+.pnp
+.pnp.js
+
+# Variáveis de ambiente e segredos
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build e empacotamento
+dist
+build
+out
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
