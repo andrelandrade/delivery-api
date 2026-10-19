@@ -8,6 +8,8 @@ const restaurants = [
     { id: 3, name: 'Sushi Dojo', categories: ['JAPANESE', 'SUSHI'] }
 ]
 
+app.use(express.json())
+
 app.get('/api/status', (req, res) => {
     const status = {
         status: 'online',
@@ -31,6 +33,16 @@ app.get('/api/restaurants/:id', (req, res) => {
     }
 
     return res.end(JSON.stringify(restaurant))
+})
+
+app.post('/api/restaurants', (req, res) => {
+    res.status(201)
+    return res.send(JSON.stringify(req.body))
+})
+
+app.post('/api/customers', (req, res) => {
+    res.status(201)
+    return res.send(JSON.stringify(req.body))
 })
 
 module.exports = app
