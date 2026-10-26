@@ -2,47 +2,18 @@ const express = require('express')
 
 const app = express()
 
-const restaurants = [
-    { id: 1, name: 'Pizzaria Central', categories: ['PIZZA', 'ITALIAN'] },
-    { id: 2, name: 'Churrascaria Boi Na Brasa', categories: ['MEAT', 'BARBECUE']},
-    { id: 3, name: 'Sushi Dojo', categories: ['JAPANESE', 'SUSHI'] }
-]
+const restaurantsRouter = require('./routes/restaurants')
+const customersRouter = require('./routes/customers')
+const statusRouter = require('./routes/status')
 
 app.use(express.json())
 
-app.get('/api/status', (req, res) => {
-    const status = {
-        status: 'online',
-        app: 'delivery'
-    }
+app.use(restaurantsRouter)
+app.use(customersRouter)
+app.use(statusRouter)
 
-    return res.end(JSON.stringify(status))
-})
-
-app.get('/api/restaurants', (req, res) => {
-    return res.end(JSON.stringify(restaurants))
-})
-
-app.get('/api/restaurants/:id', (req, res) => {
-    const id = req.params.id
-
-    const restaurant = restaurants.find(r => r.id == id)
-
-    if (!restaurant) {
-        res.statusCode = 404
-    }
-
-    return res.end(JSON.stringify(restaurant))
-})
-
-app.post('/api/restaurants', (req, res) => {
-    res.status(201)
-    return res.send(JSON.stringify(req.body))
-})
-
-app.post('/api/customers', (req, res) => {
-    res.status(201)
-    return res.send(JSON.stringify(req.body))
+app.use((req, res, next) => {
+    res.status(404).send(JSON.stringify({ error: "Route not found" }))
 })
 
 module.exports = app
