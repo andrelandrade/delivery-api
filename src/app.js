@@ -8,7 +8,7 @@ const statusRouter = require('./routes/status')
 
 app.use(express.json())
 
-app.use(restaurantsRouter)
+app.use('/restaurants', restaurantsRouter)
 app.use(customersRouter)
 app.use(statusRouter)
 

@@ -1,32 +1,13 @@
 const express = require('express')
+const Restaurant = require('../models/restaurants')
+const restaurantController = require('../controllers/restaurantController')
 
 const router = express.Router()
 
-const restaurants = [
-    { id: 1, name: 'Pizzaria Central', categories: ['PIZZA', 'ITALIAN'] },
-    { id: 2, name: 'Churrascaria Boi Na Brasa', categories: ['MEAT', 'BARBECUE']},
-    { id: 3, name: 'Sushi Dojo', categories: ['JAPANESE', 'SUSHI'] }
-]
-
-router.get('/api/restaurants', (req, res) => {
-    return res.end(JSON.stringify(restaurants))
-})
-
-router.get('/api/restaurants/:id', (req, res) => {
-    const id = req.params.id
-
-    const restaurant = restaurants.find(r => r.id == id)
-
-    if (!restaurant) {
-        res.statusCode = 404
-    }
-
-    return res.end(JSON.stringify(restaurant))
-})
-
-router.post('/api/restaurants', (req, res) => {
-    res.status(201)
-    return res.send(JSON.stringify(req.body))
-})
+router.get('/', restaurantController.getRestaurants)
+router.get('/:id', restaurantController.getRestaurant)
+router.post('/', restaurantController.create)
+router.delete('/:id', restaurantController.remove)
+router.patch('/:id', restaurantController.update)
 
 module.exports = router
